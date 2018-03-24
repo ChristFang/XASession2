@@ -2,6 +2,9 @@ package com.xingcloud.xa.session2.test;
 
 import com.xingcloud.xa.session2.exec.PlanExecutor;
 import com.xingcloud.xa.session2.parser.Parser;
+import com.xingcloud.xa.session2.ra.Operation;
+import com.xingcloud.xa.session2.ra.RelationProvider;
+
 import net.sf.jsqlparser.JSQLParserException;
 
 /**
@@ -26,9 +29,16 @@ public class Tests {
 								"GROUP BY user.ref0;";
 
 	public static void main(String[] args) throws JSQLParserException {
-		System.out.println(PlanExecutor.executePlan(Parser.getInstance().parse(Tests.sql1)));
 		System.out.println(PlanExecutor.executePlan(Parser.getInstance().parse(Tests.sql2)));
-		System.out.println(PlanExecutor.executePlan(Parser.getInstance().parse(Tests.sql3)));
-		System.out.println(PlanExecutor.executePlan(Parser.getInstance().parse(Tests.sql4)));
+//		System.out.println(PlanExecutor.executePlan(Parser.getInstance().parse(Tests.sql2)));
+//		System.out.println(PlanExecutor.executePlan(Parser.getInstance().parse(Tests.sql3)));
+//		System.out.println(PlanExecutor.executePlan(Parser.getInstance().parse(Tests.sql4)));
+
+
+		Operation operation = Parser.getInstance().parse(Tests.sql2);
+		RelationProvider relationProvider = PlanExecutor.executePlan(operation);
+
+
+
     }
 }
